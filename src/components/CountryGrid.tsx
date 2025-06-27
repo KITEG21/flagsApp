@@ -3,7 +3,6 @@ import { fetchAllCountry, fetchCountryFrameData, fetchCountryRegion } from "../a
 import CountryFrame from "./CountryFrame"
 import type { CountryFrameInfo } from "../types/types"
 import { Link } from "react-router-dom"
-import ThemeToggle from "./ThemeToggle"
 
 export default function CountryGrid() {
   const [info, setInfo] = useState<CountryFrameInfo[]>([])
