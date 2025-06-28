@@ -4,13 +4,17 @@ import CountryInfo from './components/CountryInfo'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { ThemeProvider } from './context/ThemeProvider'
 import ThemeToggle from './components/ThemeToggle'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 function App() {
+
+  const queryClient = new QueryClient()
 
   return (
     <>
     <ThemeProvider>
-      <div className="flex justify-end mb-4">
+      <QueryClientProvider client={queryClient}>
+      <div className="flex justify-end mb-4 m-3">
             <ThemeToggle />
           </div>
     <Router>
@@ -19,6 +23,7 @@ function App() {
         <Route path="/country/:name" element={<CountryInfo />} />
       </Routes>
     </Router>
+    </QueryClientProvider>
     </ThemeProvider>
     </>
   )

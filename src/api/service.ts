@@ -21,7 +21,6 @@ export async function fetchCountryData(name: string) {
                 Currencies: Object.values(data[0].currencies || {}).map((curr: any) => curr.name).join(', '),
                 Languages: Object.values(data[0].languages || {}).join(', ')
             } 
-            console.log(data[0])
             return result;
 
 
@@ -31,7 +30,7 @@ export async function fetchCountryData(name: string) {
 
 }
 
-export async function fetchAllCountry() {
+export async function fetchAllCountry(): Promise<CountryFrameInfo[]>{
     try{
         const response = await fetch(`https://restcountries.com/v3.1/all?fields=name,capital,flags,region,population`)
         if(!response.ok) {
@@ -39,7 +38,7 @@ export async function fetchAllCountry() {
         }
         const data = await response.json();
         
-        const results = data.map((country: any) => ({
+        const results : CountryFrameInfo[] = data.map((country: any) => ({
             Flag: country.flags.png,
             Name: country.name.common,
             Population: country.population,
@@ -94,7 +93,6 @@ export async function fetchCountryFrameData(name: string) {
                 Region: country.region,
                 Capital: Array.isArray(country.capital) ? country.capital[0] : country.capital,
             }));
-            console.log(data[0])
             return result;
 
 
